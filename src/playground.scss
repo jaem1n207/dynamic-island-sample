@@ -1,0 +1,32 @@
+.playground {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.title {
+  font-size: var(--font-size-800);
+  margin-bottom: var(--space-md);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+
+  & > button {
+    height: var(--min-tap-target-height);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+    }
+  }
+}

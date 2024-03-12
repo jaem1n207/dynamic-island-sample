@@ -1,0 +1,126 @@
+#dynamic-island {
+  --dynamic-island-default-width: 5.25rem;
+  --dynamic-island-default-height: 13.125rem;
+  --dynamic-island-minimal-width: 5.25rem;
+  --dynamic-island-minimal-height: 15.625rem;
+  --dynamic-island-compact-width: 7.125rem;
+  --dynamic-island-compact-height: 18rem;
+  --dynamic-island-expanded-width: 15.625rem;
+  --dynamic-island-expanded-height: 23.75rem;
+
+  --border-radius: 0.25rem;
+}
+
+.dynamic-island {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: var(--dynamic-island-default-width);
+  height: var(--dynamic-island-default-height);
+  padding: var(--space-md);
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: width 0.3s, height 0.3s, padding 0.3s;
+}
+
+.dynamic-island__title {
+  font-size: var(--font-size-800);
+  margin-bottom: var(--space-md);
+}
+
+.dynamic-island__controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.dynamic-island__control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--min-tap-target-width);
+  height: var(--min-tap-target-height);
+  padding: var(--space-md);
+  background-color: hsl(var(--primary-foreground));
+  color: hsl(var(--primary));
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dynamic-island__control:hover {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.dynamic-island__control--compact {
+  width: var(--min-tap-target-width);
+  height: var(--min-tap-target-height);
+}
+
+.dynamic-island__control--expanded {
+  width: var(--min-tap-target-width);
+  height: var(--min-tap-target-height);
+}
+
+.dynamic-island--minimal {
+  width: var(--dynamic-island-minimal-width);
+  height: var(--dynamic-island-minimal-height);
+  padding: var(--space-sm);
+}
+
+.dynamic-island--compact {
+  width: var(--dynamic-island-compact-width);
+  height: var(--dynamic-island-compact-height);
+  padding: var(--space-md);
+}
+
+.dynamic-island--expanded {
+  width: var(--dynamic-island-expanded-width);
+  height: var(--dynamic-island-expanded-height);
+  padding: var(--space-lg);
+}
+
+@media (pointer: coarse) {
+  .dynamic-island__control {
+    width: var(--min-tap-target-width);
+    height: var(--min-tap-target-height);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dynamic-island {
+    padding: var(--space-lg);
+  }
+
+  .dynamic-island__title {
+    font-size: var(--font-size-800);
+    margin-bottom: var(--space-md);
+  }
+
+  .dynamic-island__controls {
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .dynamic-island__control {
+    padding: var(--space-lg);
+  }
+
+  .dynamic-island--minimal {
+    padding: var(--space-md);
+  }
+
+  .dynamic-island--compact {
+    padding: var(--space-lg);
+  }
+
+  .dynamic-island--expanded {
+    padding: var(--space-lg);
+  }
+}
