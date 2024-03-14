@@ -1,14 +1,25 @@
+/* Reference: https://developer.apple.com/design/human-interface-guidelines/live-activities#iOS-Live-Activity-dimensions */
 #dynamic-island {
-  --dynamic-island-default-width: 5.25rem;
-  --dynamic-island-default-height: 13.125rem;
-  --dynamic-island-minimal-width: 5.25rem;
-  --dynamic-island-minimal-height: 15.625rem;
-  --dynamic-island-compact-width: 7.125rem;
-  --dynamic-island-compact-height: 18rem;
-  --dynamic-island-expanded-width: 15.625rem;
-  --dynamic-island-expanded-height: 23.75rem;
+  --dynamic-island-transition-property: width, height, border-radius;
+  --dynamic-island-transition-timing-function: ease-in-out;
+  --dynamic-island-transition-duration: 0.2s;
 
-  --border-radius: 0.25rem;
+  /* default */
+  --dynamic-island-default-width: 44px;
+  --dynamic-island-default-height: 120px;
+  --dynamic-island-default-rounded: 22px;
+  /* minimal */
+  --dynamic-island-minimal-width: 52.33px;
+  --dynamic-island-minimal-height: 140px;
+  --dynamic-island-minimal-rounded: 22px;
+  /* compact */
+  --dynamic-island-compact-width: 52.33px;
+  --dynamic-island-compact-height: 18rem;
+  --dynamic-island-compact-rounded: 22px;
+  /* expanded */
+  --dynamic-island-expanded-width: 210px;
+  --dynamic-island-expanded-aspect: 4 / 3;
+  --dynamic-island-expanded-rounded: 42px;
 }
 
 .dynamic-island {
@@ -18,109 +29,39 @@
   justify-content: center;
   width: var(--dynamic-island-default-width);
   height: var(--dynamic-island-default-height);
-  padding: var(--space-md);
+  border-radius: var(--dynamic-island-default-rounded);
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  transition: width 0.3s, height 0.3s, padding 0.3s;
-}
+  transition: none;
 
-.dynamic-island__title {
-  font-size: var(--font-size-800);
-  margin-bottom: var(--space-md);
-}
-
-.dynamic-island__controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
-}
-
-.dynamic-island__control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--min-tap-target-width);
-  height: var(--min-tap-target-height);
-  padding: var(--space-md);
-  background-color: hsl(var(--primary-foreground));
-  color: hsl(var(--primary));
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.dynamic-island__control:hover {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
-}
-
-.dynamic-island__control--compact {
-  width: var(--min-tap-target-width);
-  height: var(--min-tap-target-height);
-}
-
-.dynamic-island__control--expanded {
-  width: var(--min-tap-target-width);
-  height: var(--min-tap-target-height);
+  @media (prefers-reduced-motion: no-preference) {
+    transition-property: var(--dynamic-island-transition-property);
+    transition-timing-function: var(--dynamic-island-transition-timing-function);
+    transition-duration: var(--dynamic-island-transition-duration);
+  }
 }
 
 .dynamic-island--minimal {
   width: var(--dynamic-island-minimal-width);
   height: var(--dynamic-island-minimal-height);
-  padding: var(--space-sm);
+  border-radius: var(--dynamic-island-minimal-rounded);
 }
 
 .dynamic-island--compact {
   width: var(--dynamic-island-compact-width);
   height: var(--dynamic-island-compact-height);
-  padding: var(--space-md);
+  border-radius: var(--dynamic-island-compact-rounded);
 }
 
 .dynamic-island--expanded {
   width: var(--dynamic-island-expanded-width);
-  height: var(--dynamic-island-expanded-height);
-  padding: var(--space-lg);
-}
-
-@media (pointer: coarse) {
-  .dynamic-island__control {
-    width: var(--min-tap-target-width);
-    height: var(--min-tap-target-height);
-  }
+  height: calc(var(--dynamic-island-expanded-width) / var(--dynamic-island-expanded-aspect));
+  border-radius: var(--dynamic-island-expanded-rounded);
 }
 
 @media (min-width: 1024px) {
-  .dynamic-island {
-    padding: var(--space-lg);
-  }
-
   .dynamic-island__title {
     font-size: var(--font-size-800);
     margin-bottom: var(--space-md);
-  }
-
-  .dynamic-island__controls {
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
-  }
-
-  .dynamic-island__control {
-    padding: var(--space-lg);
-  }
-
-  .dynamic-island--minimal {
-    padding: var(--space-md);
-  }
-
-  .dynamic-island--compact {
-    padding: var(--space-lg);
-  }
-
-  .dynamic-island--expanded {
-    padding: var(--space-lg);
   }
 }

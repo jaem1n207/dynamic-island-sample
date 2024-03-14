@@ -6,12 +6,17 @@ import { usePrevious } from "./hooks/use-previous";
 
 function Playground() {
   const [mode, setMode] = useState<DynamicIslandMode>("default");
-  const previousMode = usePrevious(mode);
+  const previousMode = usePrevious<DynamicIslandMode>(mode);
 
   return (
     <div className="playground">
       <h1 className="title">Dynamic Island Sample</h1>
-      <DynamicIsland mode={mode} before={previousMode} onClick={setMode} />
+      <DynamicIsland
+        mode={mode}
+        before={previousMode}
+        setMode={setMode}
+        previousMode={previousMode}
+      />
       <div className="controls">
         <button onClick={() => setMode("default")}>Default</button>
         <button onClick={() => setMode("minimal")}>Minimal</button>

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { Dispatch, SetStateAction } from "react";
 
 import "./dynamic-island.scss";
@@ -6,18 +5,20 @@ import "./dynamic-island.scss";
 type DynamicIslandProps = {
   mode?: DynamicIslandMode;
   before?: DynamicIslandMode;
-  onClick: Dispatch<SetStateAction<DynamicIslandMode>>;
+  setMode: Dispatch<SetStateAction<DynamicIslandMode>>;
+  previousMode: DynamicIslandMode;
 };
 
 const DynamicIsland = ({
   mode = "default",
   before = "expanded",
-  onClick,
+  setMode,
+  previousMode,
 }: DynamicIslandProps) => {
   return (
-    <motion.div
+    <div
       onClick={() =>
-        onClick((prev) => {
+        setMode((prev) => {
           switch (prev) {
             case "default":
               return "minimal";
@@ -33,25 +34,10 @@ const DynamicIsland = ({
         })
       }
       id="dynamic-island"
-      initial={{
-        opacity: mode === before ? 1 : 0,
-        scale: mode === before ? 1 : 0.9,
-      }}
-      animate={{
-        opacity: mode === before ? 0 : 1,
-        scale: mode === before ? 0.9 : 1,
-        transition: {
-          type: "spring",
-          stiffness: 400,
-          damping: 30,
-        },
-      }}
-      exit={{ opacity: 0, filter: "blur(10px)", scale: 0 }}
-      style={{ willChange: "opacity, scale" }}
       className={`dynamic-island dynamic-island--${mode}`}
     >
       {mode}
-    </motion.div>
+    </div>
   );
 };
 
